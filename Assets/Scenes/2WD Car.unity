@@ -120,6 +120,60 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &35291857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 35291859}
+  - component: {fileID: 35291858}
+  m_Layer: 0
+  m_Name: ROSTCPConnector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &35291858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35291857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7acef0b79454c9b4dae3f8139bc4ba77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RosIPAddress: localhost
+  m_RosPort: 10000
+  m_ConnectOnStart: 1
+  m_KeepaliveTime: 1
+  m_NetworkTimeoutSeconds: 2
+  m_SleepTimeSeconds: 0.01
+  m_ShowHUD: 1
+  m_TFTopics:
+  - /tf
+  listenForTFMessages: 1
+--- !u!4 &35291859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35291857}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.06649737, y: 0.2364339, z: -0.030322239}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &105373085
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,6 +910,9 @@ GameObject:
   - component: {fileID: 1354774667}
   - component: {fileID: 1354774668}
   - component: {fileID: 1354774669}
+  - component: {fileID: 1354774670}
+  - component: {fileID: 1354774671}
+  - component: {fileID: 1354774672}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -915,11 +972,57 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354774666}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c34d3895b11e644f8b0faa7d4798531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  motorForce: 0.01
+  horizontalRate: 0.5
+  leftWheelCollider: {fileID: 1801069211}
+  rightWheelCollider: {fileID: 2126583290}
+--- !u!114 &1354774670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354774666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086f2a32208842e46bb246f45d3781fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topicName: joint_states
+  publishFrequency: 0.1
+--- !u!114 &1354774671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354774666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01e4ba278804cd94eb909766e3a65224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topicName: vel_raw
+  publishFrequency: 0.1
+--- !u!114 &1354774672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354774666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f8a3c5631e11ce40ad356541a5587f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topicName: cmd_vel
+  publishFrequency: 0.1
   motorForce: 0.01
   horizontalRate: 0.5
   leftWheelCollider: {fileID: 1801069211}
@@ -1277,3 +1380,4 @@ SceneRoots:
   - {fileID: 1244874736}
   - {fileID: 1986316776}
   - {fileID: 1354774667}
+  - {fileID: 35291859}
